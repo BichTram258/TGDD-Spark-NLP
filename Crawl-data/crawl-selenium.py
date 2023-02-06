@@ -32,10 +32,50 @@ if __name__ == "__main__":
     #print(title)
     #links = [elem.get_attribute('href') for elem in elems]
 
-    elems = driver.find_elements(By.CSS_SELECTOR , ".listproduct")
-    title = [elem.text for elem in elems]
-    links = [elem.get_attribute('href') for elem in elems]
-    print(title, links)
+    #================================ GET name
+    elems_name = driver.find_elements(By.CSS_SELECTOR , ".listproduct h3")
+    Name_Phone = [elem.text for elem in elems_name]
+    #print(Name_Phone)
     
+    #================================ GET link
+    elems_link = driver.find_elements(By.CSS_SELECTOR , ".listproduct .main-contain")
+    Links_Phone = [elem.get_attribute('href') for elem in elems_link]
+    #print(Links_Phone)
+
+    #================================ GET price
+    elems_price = driver.find_elements(By.CSS_SELECTOR , ".listproduct .price")
+    len(elems_price)
+    Price_Phone = [elem_price.text for elem_price in elems_price]
+    #print(Price_Phone)
+
+    #================================ GET df1
+    df1 = pd.DataFrame(list(zip(Name_Phone, Links_Phone, Price_Phone)), columns = ['title', 'link','price'])
+    df1['index_']= np.arange(1, len(df1) + 1)
+    #print(df1)
+
+    #elems_countReviews = driver.find_elements(By.CSS_SELECTOR , ".listproduct .item-rating-total")
+    #countReviews = [elem.text for elem in elems_countReviews]
+    #print(countReviews)
+
+    #df1['countReviews'] = countReviews
+    #df2 = pd.DataFrame(list(zip(countReviews)), columns = ['reviews'])
+    #df1['countReviews'] = countReviews
+    #df1['countReviews']=df1['countReviews'].astype(int)
+    #df3 = df1.merge(df2, how='left', left_on='index_', right_on='reviews')
+    #print(df1)
     #driver.switch_to.frame()
     #target = driver.fi
+
+    # ================================ GET more infor of each item 
+    driver.get(Links_Phone[0])
+    #sleep(random.randint(5,10))
+
+    elems_link_comment = driver.find_elements(By.CSS_SELECTOR , ".box-border .comment-btn")
+    Links_comment = [elem.get_attribute('href') for elem in elems_link_comment]
+    print(Links_comment)  
+
+    elems_name = driver.find_elements(By.CSS_SELECTOR , ".comment-content")
+    name_comment = [elem.text for elem in elems_name]
+    #print(name_comment)
+
+    
