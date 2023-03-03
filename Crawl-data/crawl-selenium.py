@@ -76,7 +76,7 @@ if __name__ == "__main__":
     df = pd.DataFrame(columns = ['Name_phone','Id_comment','Name_comment', 'Buy_place_comment','Content_comment', 'Used_comment'])
   
     while True:
-        try:
+        #try:
             print("Crawl smartphone " + str(Name_Phone[count]))
             driver.get(Links_Phone[count])
             #print(Links_Phone[count])
@@ -93,8 +93,11 @@ if __name__ == "__main__":
                 continue
             
             else:
-                    
-                driver.get(comment_link[0])
+                try:   
+                    driver.get(comment_link[0])
+                except:
+                    count += 1 
+                    continue
                 #print(comment_link[0])
                 #count = 1
                 S = 0
@@ -121,8 +124,8 @@ if __name__ == "__main__":
                                 
                     #print("Crawl Page " + str(count))
 
-                    elems_comment_count = driver.find_elements(By.CSS_SELECTOR , "#hdfRatingAmount")
-                    comment_count = [elem.get_attribute('value') for elem in elems_comment_count]
+                    #elems_comment_count = driver.find_elements(By.CSS_SELECTOR , "#hdfRatingAmount")
+                    #comment_count = [elem.get_attribute('value') for elem in elems_comment_count]
 
                     #================================ GET comment-id
                     elems_comment_id = driver.find_elements(By.CSS_SELECTOR , ".comment.comment--all.ratingLst .comment__item.par")
@@ -175,10 +178,10 @@ if __name__ == "__main__":
             count += 1 
 
         
-        except:
-            print("Element Not Interactable Exception!")
-            export_csv = df.to_csv (r'C:\Users\TRAM\TGDD-Setiment-Analysis\Crawl-data\data-comment\data.csv', index = None, header=True)
-            break
+        #except:
+            #print("Element Not Interactable Exception!")
+            #export_csv = df.to_csv (r'C:\Users\TRAM\TGDD-Setiment-Analysis\Crawl-data\data-comment\data1.csv', index = None, header=True)
+            #break
         
 
         
