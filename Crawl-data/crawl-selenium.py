@@ -27,7 +27,7 @@ if __name__ == "__main__":
     #driver = webdriver.Chrome(executable_path = url_file_driver)
 
     # Open URL
-    driver.get("https://www.thegioididong.com/dtdd#c=42&o=9&pi=1")
+    driver.get("https://www.thegioididong.com/dtdd#c=42&o=17&pi=1")
     #sleep(random.randint(5,10))
     #driver.close()
 
@@ -107,11 +107,20 @@ if __name__ == "__main__":
                 # ================================ next pagination page end
                 
                 if int(comment_count[0]) > 120:
-                    driver.find_element("xpath", "/html/body/section[1]/div[4]/div[8]/div/a[4]").click()
+                    try:
+                        driver.find_element("xpath", "/html/body/section[1]/div[4]/div[8]/div/a[4]").click()
+                    except:
+                        driver.find_element("xpath", "/html/body/section[1]/div[4]/div[7]/div/a[4]").click()
                 elif int(comment_count[0]) > 90 and int(comment_count[0]) <=120:
-                    driver.find_element("xpath", "/html/body/section[1]/div[4]/div[8]/div/a[3]").click()
+                    try:
+                        driver.find_element("xpath", "/html/body/section[1]/div[4]/div[8]/div/a[3]").click()
+                    except:
+                        driver.find_element("xpath", "/html/body/section[1]/div[4]/div[7]/div/a[3]").click()
                 elif int(comment_count[0]) > 60 and int(comment_count[0]) <= 90:
-                    driver.find_element("xpath", "/html/body/section[1]/div[4]/div[8]/div/a[2]").click()
+                    try:
+                        driver.find_element("xpath", "/html/body/section[1]/div[4]/div[8]/div/a[2]").click()
+                    except:
+                        driver.find_element("xpath", "/html/body/section[1]/div[4]/div[7]/div/a[2]").click()
                 elif int(comment_count[0]) > 30 and int(comment_count[0]) <= 60:
                     try:
                         driver.find_element("xpath", "/html/body/section[1]/div[4]/div[8]/div/a[1]").click()
